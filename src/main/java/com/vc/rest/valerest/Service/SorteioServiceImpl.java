@@ -30,27 +30,9 @@ public class SorteioServiceImpl implements SorteioService {
 
     @Override
     @Transactional
-    public Mono<Sorteio> achaSorteio(String id) {
-        return sorteioRepository.findById(id);
-    }
-
-    @Override
-    @Transactional
-    public Mono<Sorteio> achaSorteio(Sorteio sorteio) {
-        return sorteioRepository.findById(sorteio.get_id());
-    }
-
-    @Override
-    @Transactional
     public void deletaSorteio(Sorteio sorteio) {
         sorteioRepository.delete(sorteio);
 
-    }
-
-    @Override
-    @Transactional
-    public void deletaSorteio(String id) {
-        sorteioRepository.deleteById(id);
     }
 
     @Override

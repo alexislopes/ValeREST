@@ -1,6 +1,9 @@
 package com.vc.rest.valerest.Handler;
 
+
+import com.vc.rest.valerest.Document.Dia;
 import com.vc.rest.valerest.Document.Sorteio;
+import com.vc.rest.valerest.Service.api.DiaService;
 import com.vc.rest.valerest.Service.api.SorteioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,21 +16,28 @@ import reactor.core.publisher.Mono;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 @Component
-public class SorteioHandler {
+public class DiaHandler {
 
     @Autowired
-    SorteioService sorteioService;
+    DiaService diaService;
 
-    public Mono<ServerResponse> achaTodosSorteios(ServerRequest serverRequest){
+    public Mono<ServerResponse> achaTodosDia(ServerRequest serverRequest){
         return ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(sorteioService.achaTodosSorteios(), Sorteio.class);
+                .body(diaService.achaTodosDia(), Dia.class);
     }
 
-    public Mono<ServerResponse> salvaSorteio(ServerRequest serverRequest){
-        final Mono<Sorteio> sorteio = serverRequest.bodyToMono(Sorteio.class);
+    public Mono<ServerResponse> achaDia(ServerRequest serverRequest){
+        String id = serverRequest.pathVariable("_id");
         return ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromPublisher(sorteio.flatMap(sorteioService::salvaSorteio), Sorteio.class));
+                .body(diaService.achaDia(id), Dia.class);
+    }
+
+    public Mono<ServerResponse> salvaDia(ServerRequest serverRequest){
+        final Mono<Dia> dia = serverRequest.bodyToMono(Dia.class);
+        return ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromPublisher(dia.flatMap(diaService::salvaDia), Dia.class));
     }
 }

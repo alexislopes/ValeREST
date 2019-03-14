@@ -10,13 +10,7 @@ public interface SorteioService {
 
     Mono<Sorteio> salvaSorteio(Sorteio sorteio);
 
-    Mono<Sorteio> achaSorteio(String id);
-
-    Mono<Sorteio> achaSorteio(Sorteio sorteio);
-
     void deletaSorteio(Sorteio sorteio);
-
-    void deletaSorteio(String id);
 
     Flux<Sorteio> achaTodosSorteios();
 

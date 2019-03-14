@@ -10,8 +10,6 @@ import java.util.List;
 @Document
 public class Sorteio implements Serializable {
 
-    @Getter @Setter private String _id;
-    @Getter @Setter private String data;
     @Getter @Setter private String numero;
     @Getter @Setter private String premio;
     @Getter @Setter private List<Integer> dezenas;
@@ -20,9 +18,7 @@ public class Sorteio implements Serializable {
     public Sorteio() {
     }
 
-    public Sorteio(String _id, String data, String numero, String premio, List<Integer> dezenas, List<Contemplado> contemplados) {
-        this._id = _id;
-        this.data = data;
+    public Sorteio(String numero, String premio, List<Integer> dezenas, List<Contemplado> contemplados) {
         this.numero = numero;
         this.premio = premio;
         this.dezenas = dezenas;
